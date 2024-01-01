@@ -92,12 +92,6 @@ jobs:
 
         # Save commit message for future push
         echo "LAST_COMMIT_MESSSAGE=`git log --format=%s -n 1 -- guide_aires_securite.cup`" >> $GITHUB_OUTPUT
-        echo "### Last commit message"
-        git log --format=%s -n 1 -- guide_aires_securite.cup
-
-    - name: ⚙️ Push guide_aires_securite_details.txt to repo
-      uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        repository: ./outlanding
-        commit_message: ${{ steps.create_details.outputs.LAST_COMMIT_MESSSAGE }}
+        git commit -a -m `git log --format=%s -n 1 -- guide_aires_securite.cup`
+        git push
 
