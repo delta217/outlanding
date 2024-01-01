@@ -54,7 +54,7 @@ jobs:
         cp ./guide_aires_securite_details.txt ../outlanding/
 
         # Save commit message for future push
-        echo "LAST_COMMIT_MESSSAGE=`git log --format=%s -n 1 -- champs_des_alpes.cup`" >> $GITHUB_OUTPUT
+        echo "LAST_COMMIT_MESSSAGE=`git log --format=%s -n 1 -- guide_aires_securite.cup`" >> $GITHUB_OUTPUT
 
 
 
