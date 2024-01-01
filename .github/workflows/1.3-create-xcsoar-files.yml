@@ -67,18 +67,20 @@ jobs:
         sed -i "2i $versionInfo" ./guide_aires_securite_details.txt
 
 
-
+        
     - name: Create ZIP for XCSoar folder
-      id: create-zip
+      id: create_zip
       run: |
         echo "### Create ZIP to be copied to XCSoar folder"
         cd ./outlanding
-        zip guide_aires_securite.xcsoar.zip guide_aires_securite.cup guide_aires_securite_details.txt Pics/     
+        zip guide_aires_securite.xcsoar.zip guide_aires_securite.cup guide_aires_securite_details.txt Pics/
 
+        # Save commit message for future push
+        echo "LAST_COMMIT_MESSSAGE=`git log --format=%s -n 1 -- champs_des_alpes.cup`" >> $GITHUB_OUTPUT
 
     - name: ⚙️ Push to repo
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         repository: ./outlanding
-        commit_message: Test Ludovic
+        commit_message: ${{ steps.create_zip.outputs.LAST_COMMIT_MESSSAGE }}
 
