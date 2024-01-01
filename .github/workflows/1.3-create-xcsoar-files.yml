@@ -53,6 +53,9 @@ jobs:
         echo "### Copy _details to outlanding repo location"
         cp ./guide_aires_securite_details.txt ../outlanding/
 
+        cd ../outlanding
+        git add ./guide_aires_securite_details.txt
+
 
     - name: Set version
       id: set_version
@@ -66,6 +69,8 @@ jobs:
         # Add version information
         sed -i "2i $versionInfo" ./guide_aires_securite_details.txt
 
+        git add guide_aires_securite_details.txt
+
 
 
     - name: Create ZIP for XCSoar folder
@@ -75,6 +80,7 @@ jobs:
         cd ./outlanding
         zip guide_aires_securite.xcsoar.zip guide_aires_securite.cup guide_aires_securite_details.txt Pics/     
 
+        git add guide_aires_securite.xcsoar.zip
 
 
     - name: Pull repo before push
@@ -86,12 +92,12 @@ jobs:
 
         # Save commit message for future push
         echo "LAST_COMMIT_MESSSAGE=`git log --format=%s -n 1 -- guide_aires_securite.cup`" >> $GITHUB_OUTPUT
-        echo $LAST_COMMIT_MESSSAGE
+        echo "### Last commit message"
+        git log --format=%s -n 1 -- guide_aires_securite.cup
 
     - name: ⚙️ Push guide_aires_securite_details.txt to repo
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         repository: ./outlanding
         commit_message: ${{ steps.create_details.outputs.LAST_COMMIT_MESSSAGE }}
-        file_pattern: 'guide_aires_securite_details.txt guide_aires_securite.xcsoar.zip'
 
