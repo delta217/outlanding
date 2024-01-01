@@ -84,7 +84,7 @@ jobs:
           path: ./outlanding
           
       # Add version information to guide_aires_securite.cup
-      - name: Get info, delete 1st line if applicable, add info
+      - name: Set version
         id: set_version
         run: |
           # Get information
@@ -99,15 +99,18 @@ jobs:
           # Save commit message for future push
           echo "LAST_COMMIT_MESSSAGE=`git log --format=%s -n 1 -- guide_aires_securite.cup`" >> $GITHUB_OUTPUT
 
+      - name: Create ZIP for XCSoar folder
+        run: |
+          echo "### Create ZIP to be copied to XCSoar folder"
+          zip guide_aires_securite.xcsoar.zip guide_aires_securite.cup guide_aires_securite_details.txt Pics/     
+
+      - name: Pull repo before push
+        run: |
           # push to repo
           echo "Pulling latest version before push..."
           cd ../outlanding
           git pull
 
-      - name: Create ZIP for XCSoar folder
-        run: |
-          echo "### Create ZIP to be copied to XCSoar folder"
-          zip guide_aires_securite.xcsoar.zip guide_aires_securite.cup guide_aires_securite_details.txt Pics/     
       
       # Push changes to repo    
       - name: Push changes into repo
