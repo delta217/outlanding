@@ -80,11 +80,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Clone this repo
-        uses: actions/checkout@v3
-        with:
-          path: ./outlanding
+      # # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # - name: Clone this repo
+      #   uses: actions/checkout@v3
+      #   with:
+      #     path: ./outlanding
           
       # Add version information to guide_aires_securite.cup
       - name: Set version
@@ -126,11 +126,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Clone this repo
-        uses: actions/checkout@v3
-        with:
-          path: ./outlanding
+      # # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # - name: Clone this repo
+      #   uses: actions/checkout@v3
+      #   with:
+      #     path: ./outlanding
 
       - name: Create ZIP for XCSoar folder
         id: create-zip
