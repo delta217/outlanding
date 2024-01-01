@@ -104,7 +104,10 @@ jobs:
           cd ../outlanding
           git pull
 
-          
+      - name: Create ZIP for XCSoar folder
+        run: |
+          echo "### Create ZIP to be copied to XCSoar folder"
+          zip guide_aires_securite.xcsoar.zip guide_aires_securite.cup guide_aires_securite_details.txt Pics/     
       
       # Push changes to repo    
       - name: Push changes into repo
@@ -112,6 +115,6 @@ jobs:
         with:
           repository: ./outlanding
           commit_message: ${{ steps.set_version.outputs.LAST_COMMIT_MESSSAGE }}
-          file_pattern: 'guide_aires_securite_details.txt'
+          file_pattern: 'guide_aires_securite_details.txt guide_aires_securite.xcsoar.zip'
 
 
