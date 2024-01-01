@@ -53,10 +53,6 @@ jobs:
         echo "### Copy _details to outlanding repo location"
         cp ./guide_aires_securite_details.txt ../outlanding/
 
-        # Save commit message for future push
-        echo "LAST_COMMIT_MESSSAGE=`git log --format=%s -n 1 -- guide_aires_securite.cup`" >> $GITHUB_OUTPUT
-
-
 
     - name: Set version
       id: set_version
@@ -87,6 +83,11 @@ jobs:
         echo "Pulling latest version before push..."
         cd ./outlanding
         git pull
+
+        # Save commit message for future push
+        echo "LAST_COMMIT_MESSSAGE=`git log --format=%s -n 1 -- guide_aires_securite.cup`" >> $GITHUB_OUTPUT
+        echo $LAST_COMMIT_MESSSAGE
+
     - name: ⚙️ Push guide_aires_securite_details.txt to repo
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
